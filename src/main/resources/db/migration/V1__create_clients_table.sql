@@ -1,4 +1,4 @@
-CREATE SEQUENCE IF NOT EXISTS clients_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE IF NOT EXISTS clients_seq START WITH 1 INCREMENT BY 50;
 
 CREATE TABLE clients (
                          id BIGINT PRIMARY KEY DEFAULT nextval('clients_seq'),
