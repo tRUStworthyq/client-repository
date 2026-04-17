@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres-client:5432/client_db
+    username: client_user
+    password: client_pass
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+server:
+  port: 8080
+
+management:
+  zipkin:
+    tracing:
+      endpoint: http://jaeger:14268/api/traces   # Jaeger collector (Zipkin format)
+
+logging:
+  logstash:
+    encoder:
+      destination: "logstash:5000"
