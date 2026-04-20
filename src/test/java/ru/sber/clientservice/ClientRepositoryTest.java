@@ -6,8 +6,10 @@ import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 import org.springframework.boot.jdbc.test.autoconfigure.AutoConfigureTestDatabase;
 import org.springframework.context.annotation.Import;
 import ru.sber.clientservice.entity.Client;
+import ru.sber.clientservice.entity.ClientDeals;
 import ru.sber.clientservice.repository.ClientRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,10 +26,11 @@ public class ClientRepositoryTest {
     @Test
     void findByDealId_shouldSaveAndFindByDealId() {
         Client client = Client.builder()
-                .dealId("CRD-111")
                 .fullName("Иванов Иван Иванович")
                 .inn("123456789012")
                 .build();
+
+        client.setDeals(List.of(new ClientDeals("CRD-111", client)));
 
         clientRepository.save(client);
 

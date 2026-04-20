@@ -8,7 +8,10 @@ import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.sber.clientservice.entity.Client;
+import ru.sber.clientservice.entity.ClientDeals;
 import ru.sber.clientservice.repository.ClientRepository;
+
+import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -29,10 +32,10 @@ public class ClientControllerTest {
     void setUp() {
         clientRepository.deleteAll();
         Client client = Client.builder()
-                .dealId("CRD-111")
                 .fullName("Иванов Иван Иванович")
                 .inn("123456789012")
                 .build();
+        client.setDeals(List.of(new ClientDeals("CRD-111", client)));
         clientRepository.save(client);
     }
 
